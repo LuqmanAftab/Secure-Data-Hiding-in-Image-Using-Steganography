@@ -4,22 +4,22 @@ A Python implementation of secure image steganography that combines AES encrypti
 
 ## Introduction
 
-This project implements a robust method to hide confidential data within digital images. The implementation follows these key steps:
+This project implements a robust method to conceal confidential data within digital images. The implementation follows these key steps:
 
-1. **Encryption**: The secret message is first encrypted using the Advanced Encryption Standard (AES) in CBC mode with a secure 256-bit key.
+1. **Encryption**: The secret message is encrypted using Advanced Encryption Standard (AES) in CBC mode with a secure 256-bit key.
 2. **Binary Conversion**: The encrypted data is converted into binary format.
 3. **LSB Embedding**: The binary data is embedded into the least significant bits of the image pixels, making the modifications imperceptible to the human eye.
-4. **Extraction & Decryption**: For retrieving the hidden message, the process is reversed - the LSB data is extracted, converted back to bytes, and decrypted using the same AES key.
+4. **Extraction & Decryption**: To retrieve the hidden message, the process is reversed—extracting the LSB data, converting it back to bytes, and decrypting it using the same AES key.
 
-This combination of cryptography and steganography provides two layers of security: even if someone suspects steganography is used, they would still need the encryption key to access the actual message.
+This combination of cryptography and steganography provides two layers of security: even if someone suspects steganography is being used, they would still need the encryption key to access the actual message.
 
 ## Features
 
-- Strong AES-256 encryption in CBC mode with random initialization vector (IV)
+- Strong AES-256 encryption in CBC mode with a randomly generated initialization vector (IV)
 - LSB steganography with minimal visual impact on carrier images
 - Support for color (RGB) images in common formats (PNG, BMP, JPEG, etc.)
 - Command-line interface for easy integration
-- Automatic key management
+- Automatic key management for encryption and decryption
 - Validation to ensure the carrier image has sufficient capacity
 
 ## Resources Used
@@ -35,24 +35,23 @@ This combination of cryptography and steganography provides two layers of securi
 ### Prerequisites
 
 - Python 3.7 or higher
-- Pip (Python package installer)
+- Pip (Python package manager)
 
 ### Installation
 
 1. Clone this repository:
-   ```
-   git clone https://github.com/yourusername/secure-image-steganography.git
-   cd secure-image-steganography
+   ```sh
+   git clone https://github.com/LuqmanAftab/Secure-Data-Hiding-in-Image-Using-Steganography.git
    ```
 
 2. Create a virtual environment (optional but recommended):
-   ```
+   ```sh
    python -m venv venv
    source venv/bin/activate  # On Windows: venv\Scripts\activate
    ```
 
-3. Install the required packages:
-   ```
+3. Install the required dependencies:
+   ```sh
    pip install numpy Pillow pycryptodome
    ```
 
@@ -60,62 +59,53 @@ This combination of cryptography and steganography provides two layers of securi
 
 #### Hiding a Message
 
-To hide a message in an image:
+To hide a message inside an image:
 
-```
-python steganography.py hide -i input_image.png -m "Your secret message" -o output_image.png
+```sh
+python Steganography_main.py
 ```
 
-This will:
-- Generate a random encryption key
-- Encrypt the message using AES
-- Hide the encrypted data in the image
-- Save the output image
-- Save the encryption key to a file (required for later extraction)
+**This will:**
+- Upload image and enter secret text.
+- Provide a password to securely hide text messages within images using steganography.
+- Encrypt messages using AES (CBC mode) before embedding them into images.
+- Convert encrypted data into a binary format to embed within image pixels' least significant bits (LSBs).
 
 #### Extracting a Message
 
-To extract a hidden message from an image:
+Extracting the hidden message from an image involves:
 
-```
-python steganography.py extract -i stego_image.png -k key_file.txt
-```
-
-This will:
-- Load the encryption key
-- Extract the hidden data from the image
-- Decrypt the message
-- Display the original message
+- Extract hidden messages from stego images and decrypt them with a password.
+- Utilize OpenCV and PIL for image processing.
+- Offer a user-friendly interface using Tkinter to select images for embedding and extraction.
+- Ensure data security by requiring a password to encrypt and decrypt messages.
+- Handle errors like incorrect passwords, insufficient image size, and invalid decryption attempts.
 
 ## Security Considerations
 
-- Always keep the encryption key secure and separate from the stego image
-- Use lossless image formats like PNG to prevent data loss during saving
-- For maximum security, use the program on a secure, offline system
-- The stego image should not be compressed or modified after the data is embedded
+- Always keep the encryption key secure and separate from the stego image.
+- For maximum security, run the program in a secure, offline environment.
+- The stego image should not be compressed or modified after embedding the data.
 
 ## Limitations
 
-- The carrier image must have sufficient capacity to store the encrypted message
-- Works best with lossless image formats (PNG, BMP) rather than lossy formats (JPEG)
-- The program does not hide the fact that steganography is being used (only the content is protected)
+- The carrier image must have sufficient capacity to store the encrypted message.
+- Works best with lossless image formats (PNG, BMP) rather than lossy formats (JPEG).
+- This method does not conceal the presence of steganography, only the hidden content.
 
 ## Future Enhancements
 
-- Support for other steganography techniques (DCT, wavelet-based)
-- Multiple encryption options
-- Password-based key derivation
-- Image quality analysis tools
-- Spread-spectrum techniques for increased robustness
+- Support for alternative steganography techniques (DCT, wavelet-based methods).
+- Additional encryption algorithms beyond AES-256.
+- Password-based key derivation for added security.
+- Image quality analysis tools to detect distortions.
+- Spread-spectrum techniques for improved robustness against detection.
 
 ## License
 
-This project is available under the MIT License.
+This project is licensed under the MIT License.
 
 ## Contributor
 
-- Gudur Luqman Aftab
+- **Gudur Luqman Aftab**
 
----
-
-*Note: This project is intended for educational purposes and legitimate security applications only. Always respect privacy laws and regulations when using steganography and encryption technologies.*
